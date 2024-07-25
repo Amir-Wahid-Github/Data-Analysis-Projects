@@ -1,0 +1,322 @@
+A Comprehensive Exploration of NFL Team Performance: Unraveling Strategic Dynamics Through Analytical Insights
+Amir Wahid
+
+Abstract
+
+This study investigates the significance of passing yards in winning NFL games and the correlation between yardage metrics and points scored per game. The analysis focused on determining whether averaging at least 225 passing yards per game is critical for success, defined as winning ten or more games. Additionally, it examined the impact of total, passing, and rushing yards on points per game and the influence of defensive yards allowed on offensive performance. Using linear regression in R, the findings revealed a moderate correlation between passing yards and wins, but a stronger correlation between total yards and points per game. Defensive metrics showed weaker correlations, emphasizing the importance of situational defense. The study faced limitations in data consolidation, variability, and the evolving nature of football, but provided valuable insights into the multifaceted factors influencing NFL game outcomes.
+
+Introduction
+
+My lifelong passion for football, a sport I've played from childhood through college, inspired this statistical analysis of NFL game outcomes. Football has always captivated me as a player and as a keen observer of its evolving strategies and dynamics. The NFL, in particular, has undergone significant transformations over the years, with shifts in playing styles and priorities. Historically, the NFL was a league dominated by powerful running games, but in recent years, it has transitioned to a pass-heavy offensive approach. This evolution in gameplay piqued my curiosity, leading me to explore the underlying factors that influence modern NFL game results. The primary motivation for this investigation stems from my personal experiences and observations as a football enthusiast and a devoted Pittsburgh Steelers fan. The Steelers' performance during the 2023-2024 NFL season, where they managed to secure a playoff spot with ten wins despite not having an outstanding offensive record, sparked a series of questions in my mind. How did they achieve such success with seemingly mediocre offensive stats? Were there other teams with similar profiles? What were the key factors that contributed to their wins? This analysis aims to answer these questions and uncover patterns that could help predict NFL game outcomes. In undertaking this analysis, I am particularly interested in the predictive power of various statistical metrics, focusing on the 2023-2024 NFL season. By examining a range of factors, including passing yards, total yards, and defensive metrics, I aim to identify which aspects of the game are most strongly correlated with winning. Given the league's shift towards a passing-centric strategy, understanding the role of passing yards in a team's success is a central theme of this study. However, I also recognize the importance of a comprehensive approach that considers the multifaceted nature of football, where multiple variables interact to determine the outcome of each game. The study employs rigorous statistical methods, using linear regression and other analytical techniques within the R software environment, to explore these relationships. This analysis is not just about identifying correlations but also about understanding causation—determining which factors have a direct impact on a team's ability to win games. By categorizing teams based on their win records and analyzing the data through various lenses, the study aims to provide a nuanced understanding of what drives success in the modern NFL. Moreover, this investigation is grounded in the context of real-world performance metrics from the latest NFL season. By focusing on recent data, the analysis reflects current trends and strategies in the league, offering relevant insights that can inform future game plans and team strategies. The findings from this study could have practical implications for coaches, analysts, and fans, helping to refine their understanding of the game and improve decision-making processes. In summary, this introduction sets the stage for a detailed exploration of NFL game outcomes, driven by a combination of personal passion, analytical curiosity, and a desire to understand the evolving dynamics of professional football. Through this study, I hope to contribute to the broader field of sports analytics, offering insights that enhance our understanding of what it takes to win in today's NFL.
+Objectives
+
+The first objective of this study is to explore the critical role of passing in winning NFL games, particularly in the context of the evolving offensive strategies that increasingly emphasize the passing game. Over the years, the NFL has seen a significant shift towards more pass-heavy offenses, prompting a need to understand just how crucial passing yards are to securing victories. To investigate this, I will conduct a series of tests to determine if there is a minimum threshold of passing yards that correlates with winning. Specifically, I aim to examine whether averaging at least 225 passing yards per game is a key factor in achieving success.
+
+The threshold of 225 passing yards is chosen based on historical data and current trends in the league, providing a meaningful benchmark for analysis. The analysis will involve categorizing teams based on their passing yard averages and then examining their win records. Teams that achieve ten or more wins in a season are typically considered successful, often making the playoffs. Therefore, the study will label teams with ten or more wins as "1" and those with fewer wins as "0." By applying linear regression and other statistical methods, the relationship between passing yards and the likelihood of winning ten games will be explored. This analysis aims to quantify the importance of the passing game in modern NFL offenses and determine if achieving a certain level of passing proficiency is essential for winning.
+
+The second objective delves into the broader relationship between yardage metrics and points scored per game, aiming to uncover both correlation and causation. This analysis is twofold: it examines the impact of offensive yardage on points per game and explores how defensive yardage allowed influences offensive performance. On the offensive side, the study will compare total yards per game to points per game, as well as break down the yardage into passing yards per game and rushing yards per game. This detailed examination helps identify which aspects of yardage are most predictive of scoring success and whether certain types of yardage contribute more significantly to a team's points output.
+
+On the defensive side, the analysis focuses on the yardage allowed by teams and its effect on offensive points per game. This includes examining defensive passing yards allowed per game and defensive rushing yards allowed per game. The rationale behind this approach is that a strong defense can significantly influence the game by limiting the opponent's scoring opportunities, thereby giving the offense more chances to score. Additionally, defenses that excel in creating turnovers or scoring directly can further boost the offensive points per game. By comparing defensive performance metrics to offensive points per game, the study aims to highlight the interplay between defense and offense, emphasizing the critical role that defensive effectiveness plays in overall team success.
+
+These analyses will involve statistical techniques such as linear regression to determine the strength and nature of the relationships between yardage metrics and points per game. Visualizations will also be used to illustrate these relationships clearly. By understanding these dynamics, the study aims to provide valuable insights into the strategic importance of both offensive and defensive yardage in the NFL, helping teams optimize their game plans and improve their performance on the field.
+Literature Review
+
+Recent research on the strategic dynamics of NFL gameplay has reignited debates about the impact of running versus passing games on winning outcomes. Utilizing regression analysis on data from 256 regular-season games in 2005, the study focused on first-half statistics to avoid the issue of correlation in final-game statistics. The findings revealed that a first-half passing-yard advantage significantly increased the likelihood of winning, while a rushing-yard advantage had no discernible impact. This challenges traditional football wisdom, suggesting that coaches should prioritize the passing game in their offensive and defensive strategies.
+
+In the realm of NFL refereeing, Defensive Pass Interference (DPI) is a critical penalty that can alter game outcomes by granting the offensive team a first down. A groundbreaking study attempted to predict DPI using machine learning (ML) techniques applied to player-tracking GPS data from the 2018 regular season. Despite exploring various ML models such as Long Short-Term Memory (LSTM) and Artificial Neural Networks (ANN), the study faced challenges with high recall but low precision, resulting in many false positives. This underscores the complexity of predicting DPI based solely on GPS data and suggests the potential for incorporating video sequence classification to improve accuracy.
+
+Shifting the focus to betting, another study explored the "over/under" betting line, which predicts the total number of points scored in a game. Analyzing game-specific statistics from 2003 to 2013, the researchers aimed to achieve a prediction success rate above the 52.4% break-even point. The study highlighted the potential of the over/under line to be more beatable compared to other betting lines, emphasizing its relevance to the booming fantasy football industry. This provides a new perspective on betting analysis and underscores the importance of comprehensive statistical evaluation in understanding game outcomes.
+
+The debate over the importance of rushing versus passing offenses in determining game outcomes continues to be a focal point in football analytics. A study examined this issue by evaluating the efficiency of rushing and passing yards and their respective metrics, using multiple sports ranking systems. The results indicated nuanced correlations between these statistics and game outcomes, contributing to a more detailed understanding of team strength. This research adds depth to the ongoing discussion about the relative significance of different offensive strategies in football.
+
+Evaluating quarterback performance is another critical aspect of NFL analytics. Traditional quarterback ratings often overemphasize completion percentage and interception percentage, leading to biases. A study employing ordinary least squares regression on season statistics from 1970 to 2006 developed a new rating focused on a quarterback's contribution to points-per-game. This new rating mitigates historical biases and performs well in predicting winning percentages, offering a refined metric for assessing quarterback performance. This advancement helps teams make more informed decisions about player evaluations and game strategies.
+
+The importance of NFL games extends beyond entertainment, reflecting significant strategic, analytical, and economic dimensions. The strategic evolution prompted by research findings, such as the emphasis on the passing game over the traditional running game, is crucial for teams aiming to optimize their performance and improve their chances of winning. Technological integration, exemplified by the use of machine learning and GPS tracking data, plays an increasingly important role in refining game strategies and officiating, making the sport fairer and more competitive.
+
+NFL games also have a substantial impact on the betting industry and fantasy football. Accurate predictions and analyses of game outcomes and total points scored are essential for bettors and fantasy sports enthusiasts, influencing their decisions and strategies. The continuous development of advanced metrics for evaluating player performance ensures a more accurate and fair assessment of players' contributions, aiding teams in making informed decisions regarding player selection and game strategies.
+
+Economically, the NFL generates significant revenue through ticket sales, broadcasting rights, merchandise, and sponsorships. NFL games’ popularity and economic influence underscore their importance in the sports industry and the broader economy. Overall, NFL games represent a complex interplay of strategy, technology, and economics, with ongoing research contributing to a deeper understanding of the sport and its various facets.
+Methods
+
+My exploration into team performance in the NFL aims to delve into the multifaceted factors that contribute to game outcomes. The first objective of this study is to analyze the relationship between passing yards and winning, with a specific focus on the threshold of ten wins, which historically signifies a strong likelihood of playoff qualification. Typically, NFL teams that secure ten or more wins in a season are seen as playoff contenders, making this threshold a logical and meaningful benchmark for analysis. To facilitate this, I categorized teams based on their win records: teams with ten or more wins were labeled as "1" (indicative of playoff qualification), while teams with fewer than ten wins were labeled as "0" (indicative of non-qualification). This binary classification simplifies the analytical framework, allowing for a clear and focused investigation into the factors influencing playoff qualification.
+
+The data analysis was conducted using R, a powerful and versatile statistical software widely recognized for its capabilities in data analysis and visualization. R's extensive array of libraries and tools enables comprehensive statistical modeling, making it an ideal choice for this type of research. The primary analytical method employed in this study is linear regression, chosen for its effectiveness in uncovering relationships between variables and distinguishing between causation and correlation. Linear regression allows us to quantify the impact of one variable on another, providing insights into how specific factors, such as passing yards, influence game outcomes.
+
+The initial phase of the analysis sought to determine the influence of passing yards on the number of wins a team secures in a season. By performing a linear regression, I examined the relationship between total passing yards and the binary win outcome (playoff qualification). This analysis is particularly relevant in the modern era of football, where the passing game has become increasingly prominent. The goal is to quantify the importance of passing yards in achieving a successful season and securing a playoff spot.
+
+The second objective of this study extend the analysis to explore the relationship between various types of offensive yardage and points per game (PPG). This involves conducting separate linear regressions for three key metrics: passing yards per game versus points per game, rushing yards per game versus points per game, and total yards per game versus points per game. By examining these relationships, the study aims to provide a comprehensive understanding of how different aspects of offensive yardage contribute to a team's scoring ability. This analysis offers valuable insights into offensive efficiency, helping to identify which offensive strategies are most effective in maximizing points scored.
+
+Complementing the offensive analysis, the study also investigates defensive performance metrics to understand their impact on overall game outcomes. This includes analyzing the relationship between defensive passing yards allowed per game versus points per game, defensive rushing yards allowed per game versus points per game, and total defensive yards allowed per game versus points per game. The goal is to uncover how defensive performance influences a team's ability to limit points scored by opponents. Notably, I chose not to include points allowed per game as a separate variable in this analysis. Instead, the focus remains on yardage metrics to isolate their impact on the offense's points per game. This approach highlights the interplay between defensive effectiveness and offensive performance, providing a more nuanced understanding of the factors that drive success in football.
+
+Visualization plays a crucial role in interpreting the results of these analyses. R was used to generate visual representations of the relationships between variables, including scatter plots and regression lines. These visualizations aid in understanding the strength and nature of the relationships, making it easier to identify significant patterns and trends. The charts provide a clear and intuitive way to present the findings, facilitating a deeper comprehension of the underlying dynamics.
+
+The methods employed in this study are of significant importance for several reasons. First, the use of regression analysis provides empirical evidence of the factors that influence NFL game outcomes, moving beyond anecdotal observations to a more data-driven understanding. Second, the analysis offers strategic insights by highlighting the relative importance of passing and rushing yards on both offense and defense. This information is valuable for coaches and teams looking to refine their strategies and optimize their performance. Third, by examining both offensive and defensive metrics, the study provides a comprehensive view of team performance, contributing to better decision-making in coaching and game planning.
+
+Overall, this methodical approach, grounded in rigorous statistical analysis and clear visualization, aims to elucidate the key factors driving success in the NFL. By providing a detailed and data-driven analysis, the study contributes valuable insights to the field of sports analytics, helping to inform strategies and improve team performance in the highly competitive world of professional football.
+Results
+
+After conducting a thorough analysis using the statistical software R, several key insights emerged regarding the factors influencing NFL game outcomes. It is essential to recognize that NFL games are multifaceted events where no single statistic or play determines the outcome. Instead, multiple variables interact to shape the final result. This analysis aimed to quantify the influence of specific metrics on game outcomes, particularly focusing on passing and total yardage metrics. Here are the detailed findings from each test conducted:
+
+The first analysis focused on the relationship between passing yards per game and team wins. The results revealed a 50% correlation between passing yards per game and the number of wins, indicating a moderate relationship. This finding aligns with the current era of football, which emphasizes passing offenses. However, when examining the causational factor, only 22% of the variance in wins could be attributed to higher total passing yards. This suggests that while passing yards contribute to winning, they are not the sole determinant. Winning in the NFL requires a balanced approach, including strong defensive play, effective rushing, and special teams performance. For example, a team may have a strong passing game but still lose if their defense is weak or their special teams make critical errors. The moderate correlation highlights the complexity of football, where success is influenced by a combination of factors, and reinforces the importance of a well-rounded team strategy. (see image below)
+ 
+The second analysis examined the correlation between total yards per game and points per game. As anticipated, there was a strong correlation of 92% between these variables. This high correlation is expected because teams must accumulate yardage to drive down the field and score points. When investigating the causational factor, it was found that 85% of the variation in points per game could be explained by total yards per game. This slight reduction from the correlation percentage accounts for other scoring opportunities, such as defensive touchdowns and special teams contributions, which do not directly stem from offensive yardage. This analysis underscores the critical importance of gaining yards in football, as it directly translates into scoring opportunities. It also highlights the multifaceted nature of scoring, where special teams and defensive plays can also significantly impact the game. The high correlation and causation indicate that a strong offensive performance in terms of yardage is crucial for scoring points and winning games. (see image below)
+ 
+The third analysis focused on the relationship between passing yards per game and points per game. The correlation was 78%, reflecting a strong association given the NFL's current pass-heavy strategies. The causational factor revealed that 60% of the variation in points per game could be attributed to passing yards per game. While this is lower than the correlation, it still represents a significant causal relationship, underscoring the importance of a potent passing attack in scoring points. However, it also highlights that other factors, such as red zone efficiency and rushing performance, contribute to scoring. This finding emphasizes the need for a balanced offense that can excel in both passing and rushing. It also suggests that while a strong passing game is important, teams must also be efficient in the red zone and have a reliable rushing attack to maximize their scoring potential. (see image below)
+ 
+In the fourth analysis, the relationship between rushing yards per game and points per game was investigated. The correlation was 54%, which was higher than expected and suggests that rushing still plays a significant role in team performance. The causational analysis showed that 27% of the variation in points per game could be explained by rushing yards per game. This lower causational factor reflects the league's shift towards passing but also indicates that a strong rushing game can still be an effective strategy, particularly in controlling the clock and wearing down defenses. Rushing can help maintain possession, control the game's tempo, and tire out opposing defenses, leading to more scoring opportunities. This analysis highlights the continued relevance of a strong rushing attack in an era dominated by passing offenses. (see image below)
+ 
+The fifth analysis shifted focus to the defensive side, examining the relationship between defensive yards allowed per game and points per game. The correlation was -15%, indicating a weak and negative association. This result suggests that simply looking at total defensive yards allowed does not provide a clear picture of its impact on points per game. The causational factor was even lower at -0.01%, reaffirming that other defensive metrics, such as turnovers, red zone defense, and scoring defense, are more critical in determining a team's defensive effectiveness. This finding highlights the importance of situational defense and the ability to make key stops in crucial moments. A defense that can generate turnovers, hold strong in the red zone, and limit big plays is more likely to contribute to a team's success, even if they allow a significant amount of yardage. (see image below)
+ 
+The sixth analysis specifically examined the impact of defensive passing yards allowed per game on points per game. The correlation was a negligible 0.03%, indicating almost no relationship. The causational factor was -0.03%, suggesting a slight negative impact, meaning that allowing more passing yards does not directly translate to more points scored against the team. This highlights the complexity of defensive effectiveness, where factors like situational defense and turnovers are more crucial than total yardage allowed. This finding suggests that defenses can allow a significant amount of passing yards but still be effective if they excel in critical situations, such as third downs and red zone defense. It emphasizes the importance of context and situational performance in evaluating defensive success. (see image below)
+ 
+The final analysis focused on defensive rushing yards allowed per game and their impact on points per game. The correlation was -34%, indicating no meaningful association. However, the causational factor was 0.09%, showing a slight but positive relationship. This suggests that while there is no strong correlation, there is some causal impact where the better rush defense can contribute to limiting points allowed, potentially by controlling the pace of the game and reducing opponents' time of possession. A strong rush defense can prevent opposing teams from controlling the clock and sustaining long drives, thereby limiting their scoring opportunities. This finding underscores the importance of a balanced defense that can effectively stop both the run and the pass. (see image below)
+ 
+In conclusion, the analysis provides a nuanced understanding of the factors influencing NFL game outcomes. While passing yards and total offensive yards are strongly correlated with points scored and wins, they are not the sole determinants. Defensive metrics, particularly those focusing on yardage allowed, show weaker correlations, highlighting the importance of situational defense and other factors like turnovers. The findings underscore the complexity of NFL games, where success is determined by a combination of offensive efficiency, defensive resilience, and overall team strategy. These insights can help teams refine their approaches to achieve better performance on the field. This comprehensive analysis offers valuable perspectives for coaches, analysts, and team strategists, helping them understand the multifaceted nature of football and make informed decisions to enhance their team's performance.
+Limitations
+
+The analysis faced several limitations. Importing and exporting data was challenging due to restrictions and inconsistencies across websites, requiring significant manual cleaning and organization. NFL statistics were fragmented across multiple sources, complicating data consolidation and ensuring accuracy. Game variability, such as weather, injuries, and coaching decisions, introduced noise that affected analysis accuracy. The data's scope and granularity were limited, missing player-specific performances and situational plays, leading to oversimplified conclusions. Using historical data might not fully reflect current NFL trends, as football evolves over time. Additionally, learning and applying statistical software like R required substantial time and effort, with the potential for errors in coding and analysis. Despite these challenges, the study provided valuable insights into NFL game outcomes, emphasizing the importance of meticulous data management and analysis in sports research.
+Conclusion
+
+This study set out to explore the significance of passing yards in winning NFL games and to examine the relationship between various yardage metrics and points scored per game. Through rigorous statistical analysis using linear regression in R, several key insights emerged that contribute to a deeper understanding of NFL game dynamics. Firstly, the analysis revealed a moderate correlation between passing yards per game and team wins, with a 50% correlation indicating that while passing is important, it is not the sole determinant of success. This suggests that successful teams need a balanced approach that includes strong defensive play, effective rushing, and special teams performance. The Steelers' ability to secure ten wins despite not having an outstanding offensive record underscores the multifaceted nature of winning in the NFL. Secondly, the study found a strong correlation between total yards per game and points per game, with a 92% correlation. This high correlation underscores the importance of gaining yards as a critical component of scoring. However, other factors like defensive touchdowns and special teams contributions also play a role in scoring, highlighting the complexity of game outcomes.
+Thirdly, while passing yards were strongly correlated with points per game, the analysis also showed that rushing yards still play a significant role in team performance, with a 54% correlation. This indicates that a strong rushing game remains relevant, particularly in controlling the clock and wearing down defenses, even in the current pass-heavy era of the NFL.
+On the defensive side, the analysis revealed weaker correlations between defensive yards allowed and points per game, emphasizing the importance of situational defense and other metrics like turnovers and red zone performance. This finding suggests that a defense's ability to make key stops in crucial moments is more critical than the total yardage allowed. Despite facing limitations such as data consolidation challenges and the inherent variability of football games, this study provides valuable insights into the factors influencing NFL game outcomes. It highlights the importance of a well-rounded team strategy that balances offensive efficiency, defensive resilience, and situational performance. These findings can help coaches, analysts, and team strategists make informed decisions to enhance their team's performance in the highly competitive world of professional football.
+ 
+Reference
+Anderson, K. (2023, March 28). 2012-2022 NFL defense and offensive statistics. Kaggle. https://www.kaggle.com/datasets/kristofanderson/2012-2022-nfl-defense-and-offensive-statistics?select=2022_off.csv 
+Arkes, J. (2011). Is controlling the rushing or passing game the key to NFL victories? The Sport Journal, 14(1). https://link-gale-com.proxy-sru.klnpa.org/apps/doc/A284323943/HRCA?u=sshe_sru&sid=googleScholar&xid=f1528646
+
+CITESEERX. CiteSeerX. (n.d.). https://citeseerx.ist.psu.edu/ 
+Gober, J. M. (2009). A Points Per Game Rating For NFL Quarterbacks [Master's thesis, Ohio State University]. OhioLINK Electronic Theses and Dissertations Center. http://rave.ohiolink.edu/etdc/view?acc_num=osu1242922731
+Predicting the total number of points scored in NFL games. (n.d.). http://cs229.stanford.edu/proj2014/Max Flores, Ajay Sohmshetty, Predicting the Total Number of Points Scored in NFL Games.pdf 
+Skoki, A., Lerga, J., & Štajduhar, I. (2022, June 24). ML-based approach for NFL defensive pass interference prediction using GPS tracking data. arXiv.org. https://arxiv.org/abs/2206.13222 
+ 
+
+Appendix
+> ggplot(Capstone_II_Football_Dataset, aes(x = PYPG, y = Wins)) +
++   geom_point() +  # Scatter plot
++   geom_smooth(method = "lm", col = "blue") +  # Add linear regression line
++   labs(title = "Linear Regression of Wins vs PYPG",
++        x = "PYPG (Passing Yards Per Game)",
++        y = "Wins") +
++   theme_minimal()
+`geom_smooth()` using formula = 'y ~ x'
+
+
+
+> model <- lm(Wins ~ PYPG, data = Capstone_II_Football_Dataset)
+Call:
+lm(formula = Wins ~ PYPG, data = Capstone_II_Football_Dataset)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.68383 -0.38700 -0.05804  0.32750  0.89541 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept) -1.428788   0.568596  -2.513  0.01758 * 
+PYPG         0.008240   0.002574   3.201  0.00323 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4317 on 30 degrees of freedom
+Multiple R-squared:  0.2546,	Adjusted R-squared:  0.2298 
+F-statistic: 10.25 on 1 and 30 DF,  p-value: 0.003228
+> cat("Correlation between PYPG and Wins:", correlation, "\n")
+Correlation between PYPG and Wins: 0.5046078
+
+> ggplot(Capstone_II_Football_Dataset, aes(x = TYPG, y = PPG)) +
++   geom_point() +  # Scatter plot
++   geom_smooth(method = "lm", col = "blue") +  # Add linear regression line
++   labs(title = "Linear Regression of PPG vs TYPG",
++        x = "TYPG (Total Yards Per Game)",
++        y = "PPG (Points Per Game)") +
++   theme_minimal()
+`geom_smooth()` using formula = 'y ~ x'
+
+> correlation <- cor(Capstone_II_Football_Dataset$TYPG, Capstone_II_Football_Dataset$PPG)
+> print(correlation)
+[1] 0.9225793
+> summary(model)
+
+Call:
+lm(formula = PPG ~ TYPG, data = Capstone_II_Football_Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.3040 -0.9978 -0.0198  1.0801  3.8617 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -13.686607   2.722817  -5.027 2.16e-05 ***
+TYPG          0.106931   0.008164  13.098 6.07e-14 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.658 on 30 degrees of freedom
+Multiple R-squared:  0.8512,	Adjusted R-squared:  0.8462 
+F-statistic: 171.5 on 1 and 30 DF,  p-value: 6.075e-14
+
+> ggplot(Capstone_II_Football_Dataset, aes(x = PYPG, y = PPG)) +
++   geom_point() +  # Scatter plot
++   geom_smooth(method = "lm", col = "blue") +  # Add linear regression line
++   labs(title = "Linear Regression of PPG vs PYPG",
++        x = "PYPG (Passing Yards Per Game)",
++        y = "PPG (Points Per Game)") +
++   theme_minimal()
+`geom_smooth()` using formula = 'y ~ x'
+
+> correlation <- cor(Capstone_II_Football_Dataset$PYPG, Capstone_II_Football_Dataset$PPG)
+> print(correlation)
+[1] 0.7823207
+> model <- lm(PPG ~ PYPG, data = Capstone_II_Football_Dataset)
+> summary(model)
+
+Call:
+lm(formula = PPG ~ PYPG, data = Capstone_II_Football_Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.6837 -1.6570 -0.3196  1.9492  7.2932 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -2.26538    3.52559  -0.643    0.525    
+PYPG         0.10979    0.01596   6.879 1.23e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.677 on 30 degrees of freedom
+Multiple R-squared:  0.612,	Adjusted R-squared:  0.5991 
+F-statistic: 47.32 on 1 and 30 DF,  p-value: 1.231e-07
+
+> ggplot(Capstone_II_Football_Dataset, aes(x = RYPG, y = PPG)) +
++   geom_point() +  # Scatter plot
++   geom_smooth(method = "lm", col = "blue") +  # Add linear regression line
++   labs(title = "Linear Regression of PPG vs RYPG",
++        x = "RYPG (Rushing Yards Per Game)",
++        y = "PPG (Points Per Game)") +
++   theme_minimal()
+`geom_smooth()` using formula = 'y ~ x'
+
+> correlation <- cor(Capstone_II_Football_Dataset$RYPG, Capstone_II_Football_Dataset$PPG)
+> print(correlation)
+[1] 0.544795
+> model <- lm(PPG ~ RYPG, data = Capstone_II_Football_Dataset)
+> summary(model)
+
+Call:
+lm(formula = PPG ~ RYPG, data = Capstone_II_Football_Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.8044 -3.5254  0.8399  2.3947  8.1005 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  7.75013    3.99075   1.942  0.06158 . 
+RYPG         0.12444    0.03497   3.558  0.00126 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.603 on 30 degrees of freedom
+Multiple R-squared:  0.2968,	Adjusted R-squared:  0.2734 
+F-statistic: 12.66 on 1 and 30 DF,  p-value: 0.001264
+
+> ggplot(Capstone_II_Football_Dataset, aes(x = DYAPG, y = PPG)) +
++   geom_point() +  # Scatter plot
++   geom_smooth(method = "lm", col = "blue") +  # Add linear regression line
++   labs(title = "Linear Regression of PPG vs DYAPG",
++        x = "DYAPG (Defensive Yards Allowed Per Game)",
++        y = "PPG (Points Per Game)") +
++   theme_minimal()
+`geom_smooth()` using formula = 'y ~ x'
+
+> correlation <- cor(Capstone_II_Football_Dataset$DYAPG, Capstone_II_Football_Dataset$PPG)
+> print(correlation)
+[1] -0.1502647
+> model <- lm(PPG ~ DYAPG, data = Capstone_II_Football_Dataset)
+> summary(model)
+
+Call:
+lm(formula = PPG ~ DYAPG, data = Capstone_II_Football_Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.7087 -1.9448  0.1329  1.9880  7.4227 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept) 29.15742    8.90714   3.273  0.00268 **
+DYAPG       -0.02228    0.02677  -0.832  0.41171   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.248 on 30 degrees of freedom
+Multiple R-squared:  0.02258,	Adjusted R-squared:  -0.01 
+F-statistic: 0.693 on 1 and 30 DF,  p-value: 0.4117
+
+> ggplot(Capstone_II_Football_Dataset, aes(x = DPYGA, y = PPG)) +
++   geom_point() +  # Scatter plot
++   geom_smooth(method = "lm", col = "blue") +  # Add linear regression line
++   labs(title = "Linear Regression of PPG vs DPYGA",
++        x = "DPYGA (Defensive Passing Yards Allowed Per Game)",
++        y = "PPG (Points Per Game)") +
++   theme_minimal()
+`geom_smooth()` using formula = 'y ~ x'
+
+> correlation <- cor(Capstone_II_Football_Dataset$DPYGA, Capstone_II_Football_Dataset$PPG)
+> print(correlation)
+[1] 0.03367639
+> model <- lm(PPG ~ DPYGA, data = Capstone_II_Football_Dataset)
+> summary(model)
+
+Call:
+lm(formula = PPG ~ DPYGA, data = Capstone_II_Football_Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8114 -2.4014 -0.4373  1.8435  8.3029 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept) 20.577059   6.501488   3.165  0.00354 **
+DPYGA        0.005443   0.029494   0.185  0.85482   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.295 on 30 degrees of freedom
+Multiple R-squared:  0.001134,	Adjusted R-squared:  -0.03216 
+F-statistic: 0.03406 on 1 and 30 DF,  p-value: 0.8548
+
+> ggplot(Capstone_II_Football_Dataset, aes(x = DRYPGA, y = PPG)) +
++   geom_point() +  # Scatter plot
++   geom_smooth(method = "lm", col = "blue") +  # Add linear regression line
++   labs(title = "Linear Regression of PPG vs DRYPGA",
++        x = "DRYPGA (Defensive Rushing Yards Allowed Per Game)",
++        y = "PPG (Points Per Game)") +
++   theme_minimal()
+`geom_smooth()` using formula = 'y ~ x'
+
+> correlation <- cor(Capstone_II_Football_Dataset$DRYPGA, Capstone_II_Football_Dataset$PPG)
+> print(correlation)
+[1] -0.3401832
+> model <- lm(PPG ~ DRYPGA, data = Capstone_II_Football_Dataset)
+> summary(model)
+
+Call:
+lm(formula = PPG ~ DRYPGA, data = Capstone_II_Football_Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.7129 -2.8974  0.3024  2.5586  8.1058 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 32.44125    5.43341   5.971 1.51e-06 ***
+DRYPGA      -0.09472    0.04781  -1.981   0.0568 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.041 on 30 degrees of freedom
+Multiple R-squared:  0.1157,	Adjusted R-squared:  0.08625 
+F-statistic: 3.926 on 1 and 30 DF,  p-value: 0.05677
