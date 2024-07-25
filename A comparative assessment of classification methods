@@ -1,0 +1,61 @@
+A comparative assessment of classification methods
+Dr. Melody Y. Kiang serves as an Associate Professor within the Computer Information Systems department at California State University, Long Beach. She holds a Master of Science in Management Information Systems from the University of Wisconsin, Madison, and earned her Doctorate in Management Information Systems from the University of Texas at Austin. Before joining CSULB, she held a position as an Associate Professor at Arizona State University. Dr. Kiang's primary research interests revolve around leveraging artificial intelligence methodologies to tackle various business challenges. Her scholarly work has been published in esteemed journals such as Information Systems Research (ISR), Management Science, Journal of Management Information Systems, Decision Support Systems, IEEE Transactions on SMC, EJOR, and other reputable outlets. Additionally, she contributes as an Associate Editor for Decision Support Systems and serves as the Editor-in-Chief of the Journal of Electronic Commerce Research.
+Abstract
+In business decision-making, classification systems play a crucial role in organizing information based on specific criteria. This research aims to evaluate the effectiveness of various classification methods. We examine techniques grounded in both statistics and artificial intelligence. Through controlled experiments using synthetic data, we systematically manipulate data characteristics to simulate imperfections like nonlinearity, multicollinearity, and uneven covariance. Our findings indicate that these data traits significantly influence the performance of classification methods. This study's outcomes offer insights into designing classification systems that leverage multiple methods, enhancing their reliability and consistency in decision-making processes.
+Introduction
+The introduction highlights the importance of classification in business decision-making tasks, which have become even more crucial with the rise of the Internet. Various methods, both statistical and from artificial intelligence, are employed in classification tasks. However, there's a lack of systematic testing to compare the performance of these methods under different scenarios. As classification systems become integral to organizational decision-making, adaptability to varying data characteristics and business dynamics becomes crucial. Hence, the need for adaptive classification systems is emphasized, requiring a deeper understanding of classification methods and their performance under controlled conditions. The study aims to fill this gap by systematically evaluating the strengths and limitations of different classification methods using synthetic data with controlled biases. Specifically, the study focuses on comparing neural networks, decision tree, linear discriminant analysis, logistic regression, and k-nearest neighbors methods. The findings are expected to enhance understanding of classification methods and inform the design of adaptive classification systems.
+
+Review of Classification Literature
+The review of classification literature highlights the diversity of methods and the challenges posed by real-world data, where no single method consistently outperforms others across all tasks. Consequently, there's a growing interest in combining or integrating multiple algorithms to improve classification accuracy. Hybrid classifiers, such as model class selection, stacked generalization, and bagging predictors, offer promising avenues for this integration. Studies examining sample biases and algorithmic biases shed light on factors affecting classification performance. While not proposing a specific integration method, the research aims to guide the development of hybrid classifiers that capitalize on individual algorithm strengths while mitigating their weaknesses.
+
+Classification Methods
+
+Neural Networks
+Neural networks employ a feedforward network with backpropagation, a widely used learning algorithm. The architecture typically consists of multiple layers, including an input layer, hidden layers, and an output layer. In this study, a feedforward network with a single hidden layer is implemented. Neural networks can handle both symbolic and numeric input values and generate outputs normalized between zero and one. The network is trained iteratively until convergence, although parameter selection can be challenging.
+
+C4.5 Decision Trees
+C4.5 is an improved version of the ID3 algorithm, designed by Quinlan for classification tasks. It constructs a classification tree by recursively partitioning the instance space into hyperrectangles. C4.5 works best with problems that require orthogonal partitioning but may struggle with diagonal partitioning or tasks that are essentially probabilistic. Its performance can be affected by the density of data points in certain regions.
+
+Multivariate Discriminant Analysis (MDA)
+MDA methods aim to classify observations by minimizing expected misclassification costs. Fisher's discriminant analysis procedure, a widely used method, constructs a linear discriminant function by maximizing the ratio of between-groups to within-groups variances. MDA assumes normally distributed variables and identical covariance matrices. Linear discriminant analysis is typically preferred over quadratic discriminant analysis due to its simplicity and effectiveness.
+
+Logistic Regression Models
+Logistic regression is an alternative to linear discriminant models, requiring fewer assumptions such as multivariate normality and equal dispersion. It employs a logistic function to model the probability of a favorable outcome based on individual variables. Logistic regression is favored when variables are not normally distributed or when dealing with qualitative variables.
+
+k-Nearest Neighbor (kNN)
+kNN is a nonparametric method for classifying observations based on quantitative variables. It relaxes assumptions about data distribution and functional form. Observations are assigned to groups based on the majority vote of their k-nearest neighbors. kNN is known for its robustness and effectiveness, particularly in comparison with other methods like the nearest hyperrectangle algorithm.
+Model Assumptions
+
+Multivariate Normal Distribution of Independent Variables
+Linear discriminant analysis (LDA) assumes the normality of independent variables, but this assumption may not hold in practice, particularly in fields like economics and finance where variables may be positively skewed. The Kolmogorov-Smirnov test is applied to check for normality in the data.
+
+Linearity between Dependent and Independent Variables
+The performance of linear models, including linear discriminant analysis, relies on the relationship between dependent and independent variables. The F-test is commonly used to assess this relationship, indicating whether a linear model is appropriate for the data.
+
+Multicollinearity
+Multicollinearity, or high correlation among independent variables, can adversely affect parameter estimates in linear discriminant analysis and logistic regression. Various methods, such as correlation matrices and variance inflation factors, are used to detect multicollinearity.
+
+Covariance Equality of Two Classes
+ Linear discriminant analysis requires homoscedasticity or equality of variances between classes. Cochran's test is employed to assess this assumption, ensuring that the variance of independent variables is consistent across classes.
+
+Multimodal Distribution of the Sample
+The effectiveness of linear discriminant analysis and logistic models may be impacted by a multimodal distribution in the sample. Graphical methods like histograms and box plots are used to visualize modes in the data.
+
+Dynamic versus Static Nature of the Problem
+Many methods assume a static population distribution, which may not hold true over time. Neural network models offer adaptability to dynamic changes, tested through cross-validation to ensure performance stability.
+
+Sample Proportion
+Biased sample proportions, such as unequal distributions of positive and negative examples, can affect prediction accuracy, particularly in methods like linear discriminant analysis and neural networks. Techniques like duplicating training examples may be used to address sample proportion bias.
+
+Sample Size
+ The size of the training sample impacts the speed and performance of different classifiers. Some methods require large sample sizes for optimal accuracy, while others may perform well with smaller datasets. Constraints on sample size can affect model selection and performance, highlighting the importance of considering resource limitations.
+
+Experimental Design and Simulation Results
+	The study conducted a comprehensive analysis to examine the impact of various data characteristics on the performance of five classification methods: neural networks, decision trees (C4.5), multivariate discriminant analysis (DA), logistic models, and kth-Nearest Neighbor (kNN). Through systematic manipulation of data biases such as non-normal distributions, nonlinearity, high correlation, unequal covariance, multimodal distributions, dynamic environments, unequal sample proportions, and varying sample sizes, the researchers evaluated the methods' performances across different scenarios. Overall, neural networks and logistic models emerged as superior performers, outperforming other methods in most cases. Despite limitations such as C4.5's struggles with multimodal distributions and kNN's sensitivity to low correlations, the study highlighted nuanced findings regarding the relative strengths and weaknesses of each method under specific data conditions. Notably, sample size significantly influenced kNN and C4.5, while DA and logistic models showed more stability in their performance with increasing sample size. The results underscored the importance of considering various data characteristics and methodological nuances in classification tasks, providing valuable insights for selecting appropriate algorithms based on specific problem contexts.
+
+Conclusion and Future Research
+
+The controlled experiments conducted with simulated data have revealed that classification algorithms are highly sensitive to changes in data characteristics, often resulting in substantial misclassification rates even with a single bias present. While neural networks and logistic regression methods consistently demonstrate superior relative performance across most scenarios, the impact of dynamic variations in data poses a significant challenge for all classification methods studied, indicating the need for careful calibration in dynamic business environments. Given the absence of a single method that universally outperforms others across all problem scenarios, the study recommends building classification systems that incorporate multiple algorithms and adaptively select or combine methods based on the specific biases present in the data. This suggests a systematic approach to designing classification systems that can enhance consistency and adaptability. Future research should delve deeper into understanding the performance characteristics of classification methods, including investigating interactions among factors and varying levels of biases. Expanding experimental designs to encompass different types of biases and exploring methods for integrating statistical and AI algorithms could offer valuable insights into improving classification system effectiveness and efficiency. Additionally, exploring novel approaches for combining methods, such as pre-processing with decision trees before neural network training, could pave the way for more robust and versatile classification systems in the future.
+ 
+Works Cited
+A comparative assessment of classification methods - the ... (n.d.). https://personal.utdallas.edu/~ryoung/phdseminar/DataMiningComparison-Melody.pdf 
